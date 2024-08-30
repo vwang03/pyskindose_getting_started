@@ -77,7 +77,7 @@ The [pyskindose.calculate_dose](https://pyskindose.readthedocs.io/en/latest/pysk
 
 This algorithm can be recursively called on each event in the procedure to generate the final skin dose map, where the results of the calculations can be viewed:
 
-![](images/images/peakskindose.png)
+![](images/peakskindose.png)
 
 To find out more about how this algorithm is implemented in PySkinDose, see the [calculate_dose implementation](https://github.com/rvbCMTS/PySkinDose/tree/master/src/pyskindose/calculate_dose) on GitHub. To read more about how skin dose is calculated, including the corrections necessary, read [this paper](https://aapm.onlinelibrary.wiley.com/doi/10.1002/mp.14910) published by Jonas Andersson et al.
 
@@ -118,6 +118,8 @@ After building hvl_combined.csv and installing ipywidgets, change the execution 
 Now, calling main as shown produces this output, calculating the skindose from the RDSR data and presenting the result in a skindose map:
 
 ![](images/calculated.png)
+
+To locate the peak skin dose, see [here](#viewing-peak-skin-dose).
 
 ## Running PySkinDose as a Scriptable Interface
 The PySkinDose library also provides functionality for users who need more customization. To use this functionality, the raw RDSR file must first be parsed, then normalized.
@@ -163,6 +165,15 @@ This dictionary can be printed to view hits, dose map, correction factors, etc.:
 ```
 >>> print(results)
 {'hits': [[False, False, ...
+```
+
+### Viewing Peak Skin Dose
+The returned dictionary from calling analyze_data contains the dose_map array with the calculate skin dose for each patch. To view the peak skin dose, we can access the array within the dictionary, and find the max dose:
+```
+>>> dose_array = results['dose_map']
+>>> peak_skin_dose = max(dose_array)
+>>> print("peak skin dose: ", peak_skin_dose)
+peak skin dose: 12.721090618623858
 ```
 
 To learn more about the PySkinDose library and what it can do, take a look at the [official documentation](https://pyskindose.readthedocs.io/en/latest/modules.html).
