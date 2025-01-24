@@ -55,7 +55,7 @@ Running the main script as above produces the following plot with a slider at th
 The PySkinDose calculate_dose execution mode calculates the skindose from the RDSR data and presents the result in a skindose map, a interactive visual indication of skin dose.
 
 ### How Peak Skin Dose is Calculated
-The basic equation for estimating skin dose is as follows:
+Skin dose, by default measured in milligrays (mGy) by PySkinDose, is estimated by the following equation:
 
 $D_{skin} = K\times k_{isq}\times k_{BS}\times k_{f}\times k_{(T+P)}$
 
@@ -168,7 +168,7 @@ This dictionary can be printed to view hits, dose map, correction factors, etc.:
 ```
 
 ### Viewing Peak Skin Dose
-The returned dictionary from calling analyze_data contains the dose_map array with the calculate skin dose for each patch. To view the peak skin dose, we can access the array within the dictionary, and find the max dose:
+The returned dictionary from calling analyze_data contains the dose_map array with the calculate skin dose for each patch. To view the peak skin dose, we can access the array within the dictionary, and find the max dose (in mGy):
 ```
 >>> dose_array = results['dose_map']
 >>> peak_skin_dose = max(dose_array)
